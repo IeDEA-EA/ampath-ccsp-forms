@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
+  <xf:head>
+    <xf:title>CCSP Histopathology Form</xf:title>
+    <xf:model id="openmrs_model">
+      <xf:instance id="openmrs_model_instance">
+	<form id="402" name="CCSP Histopathology Form" version="0.1" xmlns:openmrs="https://amrs.ampath.or.ke/amrs/moduleServlet/formentry/forms/schema/401-32" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+	  <!-- ENCOUNTER INFO -->
+	  <header>
+	    <enterer />
+	    <date_entered />
+	    <session />
+	    <uid />
+	  </header>
+	  <patient>
+	    <patient.patient_id openmrs_table="patient" openmrs_attribute="patient_id" />
+	    <patient_identifier.identifier_type_id openmrs_table="patient_identifier" openmrs_attribute="identifier_type_id" />
+	    <patient.medical_record_number openmrs_table="patient_identifier" openmrs_attribute="identifier" />
+	    <patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate" />
+	    <patient.birthdate_estimated openmrs_table="patient" openmrs_attribute="birthdate_estimated" />
+	    <patient.family_name openmrs_table="patient_name" openmrs_attribute="family_name" />
+	    <patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name" />
+	    <patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name" />
+	    <patient.sex openmrs_table="patient" openmrs_attribute="gender" />
+	  </patient>
+	  <encounter>
+	    <encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime" />
+	    <encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id" />
+	    <encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id" />
+	  </encounter>
+	  <obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
+	    <temporary.registration.uuid openmrs_concept="9000^TEMPORARY REGISTRATION UUID^99DCT" openmrs_datatype="CWE" />
+	    <start_time openmrs_concept="1693^START TIME^99DCT" openmrs_datatype="TM">
+	      <value />
+	    </start_time>
+	    <start_now></start_now>
+	    <end_time openmrs_concept="1694^END TIME^99DCT" openmrs_datatype="TM">
+	      <value />
+	    </end_time>
+	    <!-- WOMENS RH FORM: 59 CHWGENERALWOMEN This is the Community Health Worker General Encounter Type to collect information on women who are aged between 12 and 49 years. -->
+            <!-- Update to match encounter ID in AMRS for CCSP -->
+	    <current_visit_type openmrs_concept="1839^CURRENT VISIT TYPE^99DCT" openmrs_datatype="CWE">
+	      <value>59</value>
+	    </current_visit_type>
+
+              <!-- CCSP Dysplasia Obs -->
+              <ccsp_pathology_cervix openmrs_concept="7645^Cervix^99DCT" openmrs_datatype="CWE">
+		<date />
+		<time />
+		<value />                
+              </ccsp_pathology_cervix>
+              <ccsp_pathology_vulva openmrs_concept="7646^Vulva^99DCT" openmrs_datatype="CWE">
+      		<date />
+		<time />
+		<value />                
+              </ccsp_pathology_vulva>
+              <ccsp_pathology_vagina openmrs_concept="7647^Vagina^99DCT" openmrs_datatype="CWE">
+      		<date />
+		<time />
+		<value />                
+              </ccsp_pathology_vagina>
+              <!-- CCSP End Dysplasia Obs -->
+
+	      <!-- CCSP END FORMOBS -->    
+              
+		    </obs>
+		    <other>
+		      <calculated_edd />
+		      <calculated_edd_reminder />
+		      <when_followup />
+		    </other>
+		  </form>
+		</xf:instance>
+		<!-- BINDINGS -->
+
+		<bind id="start_now" nodeset="/form/obs/start_now" calculate="now()" type="time" />
+
+
+		<!-- Standard Encounter Information -->
+		<bind id="start_time" nodeset="/form/obs/start_time/value" jr:preload="time" jr:preloadParams="start" type="time" />
+		<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time" />
+
+		<bind id="current_visit_type" nodeset="/form/obs/current_visit_type/value" required="true()" type="string" />
+		<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" required="true()" readonly="true()" />
+		<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()" readonly="true()" />
+		<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string" required="true()" readonly="true()" />
+
+		<bind id="patient" nodeset="/form/patient" />
+		<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()" readonly="true()" />
+		<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="3" type="integer" />
+		<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string" readonly="true()" />
+		<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date" readonly="true()" />
+		<bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string" readonly="true()" />
+
+		<bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()" readonly="true()" />
+		<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()" readonly="true()" />
+		<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string" readonly="true()" />
+		<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()" readonly="true()" />
+
+                <!-- CCSP Dysplasia Bindings -->
+                <xf:bind id="ccsp_pathology_cervix" nodeset="/form/obs/ccsp_pathology_cervix/value" type="string" required="true()" />
+                <xf:bind id="ccsp_pathology_vulva" nodeset="/form/obs/ccsp_pathology_vulva/value" type="string" required="true()" />
+                <xf:bind id="ccsp_pathology_vagina" nodeset="/form/obs/ccsp_pathology_vagina/value" type="string" required="true()" />
+                <!-- End CCSP Dysplasia Bindings -->
+
+
+  	        <!-- CCSP BINDINGS -->
+
+                <!-- Observations / Form Questions -->
+	      </xf:model>
+	    </xf:head>
+	    <!-- FORM QUESTIONS / BODY -->
+	    <xf:body>
+	      <xf:group id="1">		
+                <!-- CCSP Dysplasia Start -->
+
+<xf:group appearance="field-list">
+		<xf:select1 appearance="full" bind="ccsp_pathology_cervix" concept_id="7645">
+		  <xf:label>Pathology Results: Cervix</xf:label>
+		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
+		    <xf:label>Normal</xf:label>
+		    <xf:value>1115^Normal^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7424" id="7424^CIN 1^99DCT">
+		    <xf:label>CIN 1</xf:label>
+		    <xf:value>7424^CIN 1^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7425" id="7425^CIN 2^99DCT">
+		    <xf:label>CIN 2</xf:label>
+		    <xf:value>7425^CIN 2^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7216" id="7216^CIN 3^99DCT">
+		    <xf:label>CIN 3</xf:label>
+		    <xf:value>7216^CIN 3^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="6537" id="6537^Carcinoma^99DCT">
+		    <xf:label>Carcinoma</xf:label>
+		    <xf:value>6537^Carcinoma^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="5622" id="5622^Other^99DCT">
+		    <xf:label>Other</xf:label>
+		    <xf:value>5622^Other^99DCT</xf:value>
+		  </xf:item>
+                </xf:select1>
+
+		<xf:select1 appearance="full" bind="ccsp_pathology_vulva" concept_id="7646">
+		  <xf:label>Vulva:</xf:label>
+		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
+		    <xf:label>Normal</xf:label>
+		    <xf:value>1115^Normal^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7489" id="7489^Condyloma/VIN 1^99DCT">
+		    <xf:label>Condyloma/VIN 1</xf:label>
+		    <xf:value>7489^Condyloma/VIN 1^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7488" id="7488^VIN 2^99DCT">
+		    <xf:label>VIN 2</xf:label>
+		    <xf:value>7488^VIN 2^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7483" id="7483^VIN 3^99DCT">
+		    <xf:label>VIN 3</xf:label>
+		    <xf:value>7483^VIN 3^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="5622" id="5622^Other^99DCT">
+		    <xf:label>Other</xf:label>
+		    <xf:value>5622^Other^99DCT</xf:value>
+		  </xf:item>
+                </xf:select1>
+
+		<xf:select1 appearance="full" bind="ccsp_pathology_vagina" concept_id="7647">
+		  <xf:label>Vagina:</xf:label>
+		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
+		    <xf:label>Normal</xf:label>
+		    <xf:value>1115^Normal^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7492" id="7492^VAIN 1^99DCT">
+		    <xf:label>VAIN 1</xf:label>
+		    <xf:value>7492^VAIN 1^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7491" id="7491^VAIN 2^99DCT">
+		    <xf:label>VAIN 2</xf:label>
+		    <xf:value>7491^VAIN 2^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7435" id="7435^VAIN 3^99DCT">
+		    <xf:label>VAIN 3</xf:label>
+		    <xf:value>7435^VAIN 3^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="5622" id="5622^Other^99DCT">
+		    <xf:label>Other</xf:label>
+		    <xf:value>5622^Other^99DCT</xf:value>
+		  </xf:item>
+                </xf:select1>
+</xf:group>
+		<!-- CCSP End -->
+
+	      </xf:group>
+	    </xf:body>
+          </xf:xforms>

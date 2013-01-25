@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
   <xf:head>
-    <xf:title>CCSP VIA Form</xf:title>
+    <xf:title>CCSP Dysplasia Form</xf:title>
     <xf:model id="openmrs_model">
       <xf:instance id="openmrs_model_instance">
 	<form id="401" name="CCSP Dysplasia Form" version="0.1" xmlns:openmrs="https://amrs.ampath.or.ke/amrs/moduleServlet/formentry/forms/schema/401-32" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
@@ -42,28 +42,38 @@
 	    <current_visit_type openmrs_concept="1839^CURRENT VISIT TYPE^99DCT" openmrs_datatype="CWE">
 	      <value>59</value>
 	    </current_visit_type>
-              
-	      <!-- CCSP FORMOBS -->
-              <ccsp_currentfp openmrs_concept="374^Current FP^99DCT" openmrs_datatype="CWE" multiple="0">
+
+              <!-- CCSP Dysplasia Obs -->
+              <ccsp_satisfactory_colpo openmrs_concept="7428^Satisfactory Colposcopy^99DCT" openmrs_datatype="CWE">
 		<date />
 		<time />
 		<value />                
-              </ccsp_currentfp>
-              <ccsp_impression_cervix openmrs_concept="7484^Impression Cervix^99DCT" openmrs_datatype="CWE" multiple="0">
+              </ccsp_satisfactory_colpo>
+              <ccsp_lesion openmrs_concept="7477^Lesion^99DCT" openmrs_datatype="CWE">
 		<date />
 		<time />
 		<value />                
-              </ccsp_impression_cervix>
-              <ccsp_impression_vagina openmrs_concept="7490^Impression Vagina^99DCT" openmrs_datatype="CWE" multiple="0">
+              </ccsp_lesion>
+              <ccsp_findings openmrs_concept="7383^Findings^99DCT" openmrs_datatype="CWE">
 		<date />
 		<time />
 		<value />                
-              </ccsp_impression_vagina>
-              <ccsp_impression_vulva openmrs_concept="7487^Impression Vulva^99DCT" openmrs_datatype="CWE" multiple="0">
+              </ccsp_findings>
+              <ccsp_visual_cervix openmrs_concept="7484^Cervix^99DCT" openmrs_datatype="CWE">
 		<date />
 		<time />
 		<value />                
-              </ccsp_impression_vulva>
+              </ccsp_visual_cervix>
+              <ccsp_visual_vulva openmrs_concept="7487^Vulva^99DCT" openmrs_datatype="CWE">
+      		<date />
+		<time />
+		<value />                
+              </ccsp_visual_vulva>
+              <ccsp_visual_vagina openmrs_concept="7490^Vagina^99DCT" openmrs_datatype="CWE">
+      		<date />
+		<time />
+		<value />                
+              </ccsp_visual_vagina>
               <ccsp_procedures_done openmrs_concept="7479^Procedures Done^99DCT" openmrs_datatype="CWE" multiple="0">
 		<date />
 		<time />
@@ -89,6 +99,16 @@
 		<time />
 		<value />                
               </ccsp_new_method>
+
+              <!-- CCSP End Dysplasia Obs -->
+
+              
+	      <!-- CCSP FORMOBS -->
+              <ccsp_currentfp openmrs_concept="374^Current FP^99DCT" openmrs_datatype="CWE" multiple="0">
+		<date />
+		<time />
+		<value />                
+              </ccsp_currentfp>
 
 	      <!-- CCSP END FORMOBS -->    
               
@@ -126,17 +146,25 @@
 		<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string" readonly="true()" />
 		<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()" readonly="true()" />
 
-  	        <!-- CCSP BINDINGS -->
-
-                <xf:bind id="ccsp_currentfp" nodeset="/form/obs/ccsp_currentfp/value" type="string" required="true()" />
-                <xf:bind id="ccsp_impression_cervix" nodeset="/form/obs/ccsp_impression_cervix/value" type="string" required="true()" />
-                <xf:bind id="ccsp_impression_vagina" nodeset="/form/obs/ccsp_impression_vagina/value" type="string" required="true()" />
-                <xf:bind id="ccsp_impression_vulva" nodeset="/form/obs/ccsp_impression_vulva/value" type="string" required="true()" />
+                <!-- CCSP Dysplasia Bindings -->
+                <xf:bind id="ccsp_satisfactory_colpo" nodeset="/form/obs/ccsp_satisfactory_colpo/value" type="string" required="true()" />
+                <xf:bind id="ccsp_lesion" nodeset="/form/obs/ccsp_lesion/value" type="string" required="true()" />
+                <xf:bind id="ccsp_findings" nodeset="/form/obs/ccsp_findings/value" type="string" required="true()" />
+                <xf:bind id="ccsp_visual_cervix" nodeset="/form/obs/ccsp_visual_cervix/value" type="string" required="true()" />
+                <xf:bind id="ccsp_visual_vulva" nodeset="/form/obs/ccsp_visual_vulva/value" type="string" required="true()" />
+                <xf:bind id="ccsp_visual_vagina" nodeset="/form/obs/ccsp_visual_vagina/value" type="string" required="true()" />
                 <xf:bind id="ccsp_procedures_done" nodeset="/form/obs/ccsp_procedures_done/value" type="string" required="true()" />
                 <xf:bind id="ccsp_plan" nodeset="/form/obs/ccsp_plan/value" type="string" required="true()" />
                 <xf:bind id="ccsp_directive_fp" nodeset="/form/obs/ccsp_directive_fp/value" type="string" required="true()" />
                 <xf:bind id="ccsp_refill_dispense" nodeset="/form/obs/ccsp_refill_dispense/value" type="string" required="true()" />
                 <xf:bind id="ccsp_new_method" nodeset="/form/obs/ccsp_new_method/value" type="string" required="true()" />
+
+                <!-- End CCSP Dysplasia Bindings -->
+
+
+  	        <!-- CCSP BINDINGS -->
+
+                <xf:bind id="ccsp_currentfp" nodeset="/form/obs/ccsp_currentfp/value" type="string" required="true()" />
 
 		<!-- Observations / Form Questions -->
 	      </xf:model>
@@ -144,8 +172,7 @@
 	    <!-- FORM QUESTIONS / BODY -->
 	    <xf:body>
 	      <xf:group id="1">		
-		<!-- CCSP Start -->
-
+                <!-- CCSP Dysplasia Start -->
 		<!-- Current FP -->
 		<xf:select1 appearance="full" bind="ccsp_currentfp" concept_id="374">
 		  <xf:label>Current FP</xf:label>
@@ -187,50 +214,147 @@
 		  </xf:item>
                 </xf:select1>
 
+
+		<xf:select1 appearance="full" bind="ccsp_satisfactory_colpo" concept_id="7428">
+		  <xf:label>Satisfactory Colposcopy?</xf:label>
+		  <xf:item concept_id="1065" id="1065^Yes^99DCT">
+		    <xf:label>Yes</xf:label>
+		    <xf:value>1065^Yes^99DCT</xf:value>
+		  </xf:item>                  
+		  <xf:item concept_id="1066" id="1066^No^99DCT">
+		    <xf:label>No, entire SCJ not seen</xf:label>
+		    <xf:value>1066^No^99DCT</xf:value>
+		  </xf:item>                  
+		  <xf:item concept_id="1118" id="1118^Not done today^99DCT">
+		    <xf:label>Not done today</xf:label>
+		    <xf:value>1118^Not done today^99DCT</xf:value>
+		  </xf:item>                  
+                </xf:select1>
+
+                <!-- Lesion -->
+		<xf:select1 appearance="full" bind="ccsp_lesion" concept_id="7477">
+		  <xf:label>Lesion:</xf:label>
+		  <xf:item concept_id="7474" id="7474^&lt;50% of cervix^99DCT">
+		    <xf:label>&lt;50% of cervix</xf:label>
+		    <xf:value>7474^&lt;50% of cervix^99DCT</xf:value>
+		  </xf:item>                  
+		  <xf:item concept_id="7475" id="7475^&gt;50% of cervix^99DCT">
+		    <xf:label>&gt;50% of cervix</xf:label>
+		    <xf:value>7475^&gt;50% of cervix^99DCT</xf:value>
+		  </xf:item>                  
+		  <xf:item concept_id="7476" id="7476^Extends into canal^99DCT">
+		    <xf:label>Extends into canal</xf:label>
+		    <xf:value>7476^Extends into canal^99DCT</xf:value>
+		  </xf:item>                  
+                </xf:select1>
+
+                <!-- Findings -->
+		<xf:select1 appearance="full" bind="ccsp_findings" concept_id="7383">
+		  <xf:label>Findings:</xf:label>
+		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
+		    <xf:label>Normal</xf:label>
+		    <xf:value>1115^Normal^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7470" id="7470^Punctuation^99DCT">
+		    <xf:label>Punctuation</xf:label>
+		    <xf:value>7470^Punctuation^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7469" id="7469^Acetowhite lesion^99DCT">
+		    <xf:label>Acetowhite lesion</xf:label>
+		    <xf:value>7469^Acetowhite lesion^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7471" id="7471^Mosaicism^99DCT">
+		    <xf:label>Mosaicism</xf:label>
+		    <xf:value>7471^Mosaicism^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7472" id="7472^Atypical Vessels^99DCT">
+		    <xf:label>Atypical Vessels</xf:label>
+		    <xf:value>7472^Atypical Vessels^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7473" id="7473^Internal borders (variegated)^99DCT">
+		    <xf:label>Internal borders (variegated)</xf:label>
+		    <xf:value>7473^Internal borders (variegated)^99DCT</xf:value>
+		  </xf:item>
+                </xf:select1>
+
 <xf:group appearance="field-list">
-		<!-- Impression: Cervix -->
-		<xf:select1 appearance="full" bind="ccsp_impression_cervix" concept_id="7484">
-		  <xf:label>Impression: Cervix</xf:label>
+		<xf:select1 appearance="full" bind="ccsp_visual_cervix" concept_id="7484">
+		  <xf:label>Cervix:</xf:label>
 		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
 		    <xf:label>Normal</xf:label>
 		    <xf:value>1115^Normal^99DCT</xf:value>
 		  </xf:item>
-		  <xf:item concept_id="7507" id="7507^Positive VIA acetowhite only^99DCT">
-		    <xf:label>Positive VIA + aceto-white only</xf:label>
-		    <xf:value>7507^Positive VIA acetowhite only^99DCT</xf:value>
+		  <xf:item concept_id="7424" id="7424^CIN 1^99DCT">
+		    <xf:label>CIN 1</xf:label>
+		    <xf:value>7424^CIN 1^99DCT</xf:value>
 		  </xf:item>
-		  <xf:item concept_id="7508" id="7508^Positive VIA suspicious lesion^99DCT">
-		    <xf:label>Positive VIA + suspicious lesion for cancer</xf:label>
-		    <xf:value>7508^Positive VIA suspicious lesion^99DCT</xf:value>
+		  <xf:item concept_id="7425" id="7425^CIN 2^99DCT">
+		    <xf:label>CIN 2</xf:label>
+		    <xf:value>7425^CIN 2^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7216" id="7216^CIN 3^99DCT">
+		    <xf:label>CIN 3</xf:label>
+		    <xf:value>7216^CIN 3^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="6537" id="6537^Carcinoma^99DCT">
+		    <xf:label>Carcinoma</xf:label>
+		    <xf:value>6537^Carcinoma^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="5622" id="5622^Other^99DCT">
+		    <xf:label>Other</xf:label>
+		    <xf:value>5622^Other^99DCT</xf:value>
 		  </xf:item>
                 </xf:select1>
-		<!-- Impression: Vagina -->
-		<xf:select1 appearance="full" bind="ccsp_impression_vagina" concept_id="7490">
-		  <xf:label>Impression: Vagina</xf:label>
+
+		<xf:select1 appearance="full" bind="ccsp_visual_vulva" concept_id="7487">
+		  <xf:label>Vulva:</xf:label>
 		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
 		    <xf:label>Normal</xf:label>
 		    <xf:value>1115^Normal^99DCT</xf:value>
 		  </xf:item>
-		  <xf:item concept_id="1116" id="1116^Abnormal^99DCT">
-		    <xf:label>Abnormal</xf:label>
-		    <xf:value>1116^Abnormal^99DCT</xf:value>
+		  <xf:item concept_id="7489" id="7489^Condyloma/VIN 1^99DCT">
+		    <xf:label>Condyloma/VIN 1</xf:label>
+		    <xf:value>7489^Condyloma/VIN 1^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7488" id="7488^VIN 2^99DCT">
+		    <xf:label>VIN 2</xf:label>
+		    <xf:value>7488^VIN 2^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7483" id="7483^VIN 3^99DCT">
+		    <xf:label>VIN 3</xf:label>
+		    <xf:value>7483^VIN 3^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="5622" id="5622^Other^99DCT">
+		    <xf:label>Other</xf:label>
+		    <xf:value>5622^Other^99DCT</xf:value>
 		  </xf:item>
                 </xf:select1>
-		<!-- Impression: Vulva -->
-		<xf:select1 appearance="full" bind="ccsp_impression_vulva" concept_id="7487">
-		  <xf:label>Impression: Vulva</xf:label>
+
+		<xf:select1 appearance="full" bind="ccsp_visual_vagina" concept_id="7490">
+		  <xf:label>Vagina:</xf:label>
 		  <xf:item concept_id="1115" id="1115^Normal^99DCT">
 		    <xf:label>Normal</xf:label>
 		    <xf:value>1115^Normal^99DCT</xf:value>
 		  </xf:item>
-		  <xf:item concept_id="1116" id="1116^Abnormal^99DCT">
-		    <xf:label>Abnormal</xf:label>
-		    <xf:value>1116^Abnormal^99DCT</xf:value>
+		  <xf:item concept_id="7492" id="7492^VAIN 1^99DCT">
+		    <xf:label>VAIN 1</xf:label>
+		    <xf:value>7492^VAIN 1^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7491" id="7491^VAIN 2^99DCT">
+		    <xf:label>VAIN 2</xf:label>
+		    <xf:value>7491^VAIN 2^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="7435" id="7435^VAIN 3^99DCT">
+		    <xf:label>VAIN 3</xf:label>
+		    <xf:value>7435^VAIN 3^99DCT</xf:value>
+		  </xf:item>
+		  <xf:item concept_id="5622" id="5622^Other^99DCT">
+		    <xf:label>Other</xf:label>
+		    <xf:value>5622^Other^99DCT</xf:value>
 		  </xf:item>
                 </xf:select1>
 </xf:group>
-		<!-- Procedures Done -->
-                <!-- SWG TODO Biopsy Location! -->
+
 		<xf:select1 appearance="full" bind="ccsp_procedures_done" concept_id="7479">
 		  <xf:label>Procedure(s) Done</xf:label>
 		  <xf:item concept_id="6511" id="6511^Biopsies^99DCT">
@@ -245,15 +369,19 @@
 		    <xf:label>Cryotherapy</xf:label>
 		    <xf:value>7466^Cryotherapy^99DCT</xf:value>
 		  </xf:item>
-		  <xf:item concept_id="1107" id="1107^None^99DCT">
-		    <xf:label>None</xf:label>
-		    <xf:value>1107^None^99DCT</xf:value>
+		  <xf:item concept_id="7147" id="7147^LEEP^99DCT">
+		    <xf:label>LEEP</xf:label>
+		    <xf:value>7147^LEEP^99DCT</xf:value>
 		  </xf:item>
+                  <!-- TODO Number of LEEP Specimens -->
                 </xf:select1>
 
-		<!-- Plan -->
 		<xf:select1 appearance="full" bind="ccsp_plan" concept_id="7500">
 		  <xf:label>Plan</xf:label>
+		  <xf:item concept_id="7465" id="7465^Surgery^99DCT">
+		    <xf:label>Surgery</xf:label>
+		    <xf:value>7465^Surgery^99DCT</xf:value>
+		  </xf:item>
 		  <xf:item concept_id="7496" id="7496^Routine VIA in 1-year^99DCT">
 		    <xf:label>Routine VIA in 1-year</xf:label>
 		    <xf:value>7496^Routine VIA in 1-year^99DCT</xf:value>
@@ -262,10 +390,11 @@
 		    <xf:label>Routine VIA in 3-years</xf:label>
 		    <xf:value>7497^Routine VIA in 3-years^99DCT</xf:value>
 		  </xf:item>
-		  <xf:item concept_id="7383" id="7383^Referral for Colposcopy^99DCT">
-		    <xf:label>Referral for Colposcopy</xf:label>
-		    <xf:value>7383^Referral for Colposcopy^99DCT</xf:value>
+		  <xf:item concept_id="7383" id="7383^Repeat Colposcopy^99DCT">
+		    <xf:label>Repeat Colposcopy</xf:label>
+		    <xf:value>7383^Repeat Colposcopy^99DCT</xf:value>
 		  </xf:item>
+                  <!-- TODO Number of months to repeat -->
 		  <xf:item concept_id="7499" id="7499^Referral to Gynae-Oncology^99DCT">
 		    <xf:label>Referral to Gynae-Oncology</xf:label>
 		    <xf:value>7499^Referral to Gynae-Oncology^99DCT</xf:value>
@@ -275,7 +404,6 @@
 		    <xf:value>5622^Other^99DCT</xf:value>
 		  </xf:item>
                 </xf:select1>
-
 		<!-- FP Plan -->
 <xf:group appearance="field-list">
 		<xf:select1 appearance="full" bind="ccsp_directive_fp" concept_id="6681">
@@ -336,6 +464,17 @@
 		  </xf:item>
                 </xf:select1>
 </xf:group>
+
+                <!-- CCSP Dysplasia End -->
+
+		<!-- CCSP Start -->
+
+
+		<!-- Procedures Done -->
+                <!-- SWG TODO Biopsy Location! -->
+
+		<!-- Plan -->
+
 		<!-- CCSP End -->
 
 	      </xf:group>
